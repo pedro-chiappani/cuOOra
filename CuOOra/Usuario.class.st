@@ -21,22 +21,22 @@ Usuario class >> nombre:unNombre contra: unaPass [
 		yourself
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #accessing }
 Usuario >> agregarPregunta: unaPregunta [
 	preguntas add: unaPregunta
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #accessing }
 Usuario >> agregarRespuesta: unaRespuesta [
 	respuestas add: unaRespuesta 
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #accessing }
 Usuario >> agregarSeguidor: unUsuario [
 	seguidos add: unUsuario.
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #accessing }
 Usuario >> agregarTopico: unTopico [
 	topicosSeguidos add: unTopico.
 ]
@@ -51,7 +51,7 @@ Usuario >> contra: anObject [
 	contra := anObject
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #accessing }
 Usuario >> eliminarRespuestasPregunta: unaPregunta [
 	respuestas remove: [ :each | each pregunta = unaPregunta ]
 ]
@@ -80,17 +80,17 @@ Usuario >> nombre: anObject [
 	nombre := anObject
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #accessing }
 Usuario >> preguntas [
 	^preguntas
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #accessing }
 Usuario >> respuestas [ 
 	^respuestas
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #accessing }
 Usuario >> seguidos [
 	^seguidos
 ]
