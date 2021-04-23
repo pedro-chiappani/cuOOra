@@ -4,7 +4,7 @@ Class {
 	#instVars : [
 		'punt'
 	],
-	#category : #'CuOOra-tests'
+	#category : #'CuOOra-Tests'
 }
 
 { #category : #running }

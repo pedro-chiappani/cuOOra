@@ -4,7 +4,7 @@ Class {
 	#instVars : [
 		'number'
 	],
-	#category : #'CuOOra-ui'
+	#category : #'CuOOra-UI'
 }
 
 { #category : #initialization }

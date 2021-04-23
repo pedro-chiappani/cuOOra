@@ -10,7 +10,7 @@ Class {
 		'topicosSeguidos',
 		'respuestas'
 	],
-	#category : #'CuOOra-models'
+	#category : #'CuOOra-Models'
 }
 
 { #category : #creation }

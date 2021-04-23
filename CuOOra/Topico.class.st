@@ -6,7 +6,7 @@ Class {
 		'descripcion',
 		'preguntas'
 	],
-	#category : #'CuOOra-models'
+	#category : #'CuOOra-Models'
 }
 
 { #category : #creation }

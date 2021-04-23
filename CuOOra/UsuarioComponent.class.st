@@ -1,7 +1,7 @@
 Class {
 	#name : #UsuarioComponent,
 	#superclass : #WAComponent,
-	#category : #'CuOOra-ui'
+	#category : #'CuOOra-UI'
 }
 
 { #category : #rendering }

@@ -10,7 +10,7 @@ Class {
 		'puntuacion',
 		'respuestas'
 	],
-	#category : #'CuOOra-models'
+	#category : #'CuOOra-Models'
 }
 
 { #category : #creation }
@@ -74,6 +74,11 @@ Pregunta >> titulo [
 { #category : #accessing }
 Pregunta >> titulo: anObject [
 	titulo := anObject
+]
+
+{ #category : #accessing }
+Pregunta >> usuario [
+	^usuario
 ]
 
 { #category : #accessing }

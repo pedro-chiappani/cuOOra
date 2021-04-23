@@ -7,7 +7,7 @@ Class {
 		'preguntas',
 		'respuestas'
 	],
-	#category : #'CuOOra-models'
+	#category : #'CuOOra-Models'
 }
 
 { #category : #'as yet unclassified' }
@@ -22,7 +22,7 @@ CuOOra >> calcularPuntajeUsuario: unUsuario [
 { #category : #'as yet unclassified' }
 CuOOra >> crearPregunta: unTitulo topicos: unosTopicos decripcion: unaDescrip usuario: unUsuario [
 	|preg|
-	preg := Pregunta new titulo: unTitulo descripcion: unaDescrip usuario: unUsuario.
+	preg := Pregunta titulo: unTitulo descripcion: unaDescrip usuario: unUsuario.
 	preguntas add: preg.
 	unUsuario agregarPregunta: preg.
 	unosTopicos do: [ :each | each preguntas: preg ]
@@ -45,7 +45,7 @@ CuOOra >> crearTopico: unTitulo descrip: unaDescrip [
 ]
 
 { #category : #'as yet unclassified' }
-CuOOra >> crearUsusario: unNombre pass: unaPass [
+CuOOra >> crearUsuario: unNombre pass: unaPass [
 	|usu|
 	usu := Usuario nombre: unNombre contra: unaPass.
 	usuarios add: usu. 
@@ -63,6 +63,14 @@ CuOOra >> eliminarPregunta: unaPregunta [
 						ifTrue: [ preg eliminarRespuestas.
 							preg remove ].
 					usu eliminarRespuestasPregunta: unaPregunta ] ]
+]
+
+{ #category : #initialization }
+CuOOra >> initialize [
+	usuarios := OrderedCollection new.
+	preguntas:= OrderedCollection new.
+	topicos := OrderedCollection new.
+	respuestas:= OrderedCollection new.
 ]
 
 { #category : #'as yet unclassified' }

@@ -8,7 +8,7 @@ Class {
 		'puntuacion',
 		'usuario'
 	],
-	#category : #'CuOOra-models'
+	#category : #'CuOOra-Models'
 }
 
 { #category : #creation }
