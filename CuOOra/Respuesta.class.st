@@ -23,7 +23,7 @@ Respuesta class >> texto: unTexto pregunta: unaPregunta [
 Respuesta >> initialize [
 	super initialize.
 	fechayhora:= DateAndTime now.
-	puntuacion := Puntuacion new.
+	puntuacion := OrderedCollection  new.
 ]
 
 { #category : #accessing }

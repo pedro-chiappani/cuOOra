@@ -42,7 +42,7 @@ Pregunta >> initialize [
 	super initialize.
 	fechayhora := DateAndTime now.
 	respuestas := OrderedCollection new.
-	puntuacion := Puntuacion new.
+	puntuacion := OrderedCollection  new.
 	
 ]
 
@@ -53,12 +53,17 @@ Pregunta >> puntuacion [
 
 { #category : #'as yet unclassified' }
 Pregunta >> puntuacionTotal [
-	^puntuacion sum: [ :each | each puntuacion]
+	^puntuacion sum: [ :each | each puntuacion ]
 ]
 
 { #category : #'as yet unclassified' }
 Pregunta >> registrarPuntuacion: unaPuntuacion [
 	puntuacion add: unaPuntuacion
+]
+
+{ #category : #accessing }
+Pregunta >> respuestas [ 
+	^ respuestas
 ]
 
 { #category : #accessing }
