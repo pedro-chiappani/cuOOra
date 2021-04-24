@@ -41,6 +41,14 @@ Usuario >> agregarTopico: unTopico [
 	topicosSeguidos add: unTopico.
 ]
 
+{ #category : #'as yet unclassified' }
+Usuario >> calcularPuntaje [
+	|puntaje|
+	puntaje := preguntas sum: [ :each | 20 + each puntuacionTotal ].
+	puntaje := puntaje + (respuestas select: [:each | each usuario ~= self]) sum: [ :each | 50 + each puntuacionTotal ].
+	^puntaje
+]
+
 { #category : #accessing }
 Usuario >> contra [
 	^ contra

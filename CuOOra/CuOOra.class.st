@@ -12,11 +12,7 @@ Class {
 
 { #category : #'as yet unclassified' }
 CuOOra >> calcularPuntajeUsuario: unUsuario [
-	|puntaje|
-	puntaje := 0.
-	unUsuario preguntas do: [ :preg | puntaje:= puntaje + 20 + preg puntuacionTotal ].
-	unUsuario respuestas do: [ :res | puntaje := puntaje + 50 + res puntuacionTotal ].
-	^puntaje
+	unUsuario calcularPuntaje 
 ]
 
 { #category : #'as yet unclassified' }
