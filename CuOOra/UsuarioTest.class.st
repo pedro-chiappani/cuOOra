@@ -46,8 +46,11 @@ UsuarioTest >> testAgregarTopico [
 
 { #category : #tests }
 UsuarioTest >> testRespuestas [
-	|resp preg|.
-	preg := Pregunta titulo: 'titTest' descripcion: 'descTest'  usuario: usu.
+	|resp preg topicos aux|.
+	topicos := OrderedCollection new.
+	aux := Topico new. topicos add: aux.
+	aux := Topico new. topicos add: aux.
+	preg := Pregunta titulo: 'titTest' descripcion: 'descTest'  usuario: usu topicos: topicos.
 	usu agregarPregunta: preg.
 	
 	resp:= Respuesta new.

@@ -9,9 +9,11 @@ Class {
 
 { #category : #running }
 PreguntaTest >> setUp [
-	|user|.
+	|user topicos aux|.
 	user:= Usuario new .
-	preg := Pregunta titulo: 'Hola' descripcion: 'Es un saludo'  usuario: user .
+	topicos := OrderedCollection new.
+	aux := Topico new. topicos add: aux. topicos add: aux.
+	preg := Pregunta titulo: 'Hola' descripcion: 'Es un saludo'  usuario: user topicos: topicos.
 	
 	
 	
@@ -29,10 +31,10 @@ PreguntaTest >> testEliminarResp [
 
 { #category : #tests }
 PreguntaTest >> testPuntuacionTotal [
-	|punt|.
-	punt:= Puntuacion new.
-	punt positivo.
-	preg registrarPuntuacion: punt.
-	preg registrarPuntuacion: punt.
+	|usu usu2|.
+	usu := Usuario new.
+	usu2 := Usuario new.
+	preg registrarPuntuacion: usu valor: 1.
+	preg registrarPuntuacion: usu2 valor: 1.
 	self assert: preg puntuacionTotal equals: 2.
 ]

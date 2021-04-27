@@ -13,7 +13,7 @@ Class {
 { #category : #'as yet unclassified' }
 CuOOra >> crearPregunta: unTitulo topicos: unosTopicos decripcion: unaDescrip usuario: unUsuario [
 	|preg|
-	preg := Pregunta titulo: unTitulo descripcion: unaDescrip usuario: unUsuario.
+	preg := Pregunta titulo: unTitulo descripcion: unaDescrip usuario: unUsuario topicos: unosTopicos.
 	preguntas add: preg.
 	unUsuario agregarPregunta: preg.
 	unosTopicos do: [ :each | each preguntas: preg ]
@@ -64,59 +64,9 @@ CuOOra >> initialize [
 	respuestas:= OrderedCollection new.
 ]
 
-{ #category : #'as yet unclassified' }
-CuOOra >> obtenerPreguntasRelevantes: unUsuario [
-	| aux |
-	aux := OrderedCollection new.
-	unUsuario topicosSeguidos
-		do: [ :each | each preguntas do: [ :preg | aux addAll: preg] ] .
-	unUsuario seguidos
-		do: [ :each | each preguntas do: [ :pregunta | aux addAll: pregunta ] ] .
-	^ aux
-]
-
-{ #category : #'as yet unclassified' }
-CuOOra >> obtenerPreguntasTopico: unTopico [ 
-	^unTopico preguntas
-]
-
-{ #category : #'as yet unclassified' }
-CuOOra >> obtenerPreguntasUsuario: unUsuario [
-	^unUsuario preguntas
-]
-
-{ #category : #'as yet unclassified' }
-CuOOra >> obtenerRespuestasPregunta: unaPregunta [
-	^unaPregunta respuestas asSortedCollection: [ :unaRes :otraRes | unaRes puntuacionTotal > otraRes puntuacionTotal ]
-]
-
-{ #category : #'as yet unclassified' }
-CuOOra >> obtenerRespuestasUsuario: unUsuario [
-	^respuestas collect: [ :each | each usuario = unUsuario ]
-]
-
 { #category : #accessing }
 CuOOra >> preguntas [
 	^ preguntas
-]
-
-{ #category : #'as yet unclassified' }
-CuOOra >> registrarPuntuacion: anObject usuario: unUsuario valor: unValor [
-	| punt aux |
-	aux := anObject puntuacion.
-	aux
-		detect: [ :each | 
-			each usuario = unUsuario
-				ifTrue: [ punt := each ] ]
-		ifFound: [ punt reset.
-			unValor > 0
-				ifTrue: [ punt positivo ]
-				ifFalse: [ punt negativo ] ]
-		ifNone: [ punt := Puntuacion usuario: unUsuario.
-			unValor > 0
-				ifTrue: [ punt positivo ]
-				ifFalse: [ punt negativo ].
-			anObject registrarPuntuacion: punt ]
 ]
 
 { #category : #accessing }

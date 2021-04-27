@@ -33,7 +33,7 @@ Usuario >> agregarRespuesta: unaRespuesta [
 
 { #category : #accessing }
 Usuario >> agregarSeguidor: unUsuario [
-	seguidos add: unUsuario.
+	self == unUsuario ifFalse: [ seguidos add: unUsuario].
 ]
 
 { #category : #accessing }
@@ -61,8 +61,8 @@ Usuario >> contra: anObject [
 
 { #category : #accessing }
 Usuario >> eliminarRespuestasPregunta: unaPregunta [
-	respuestas removeAllSuchThat: [:each | each pregunta == unaPregunta ].
-
+	respuestas
+		removeAllSuchThat: [ :each | each pregunta == unaPregunta ]
 ]
 
 { #category : #accessing }
@@ -75,8 +75,8 @@ Usuario >> initialize [
 	fechayhora := DateAndTime now.
 	preguntas := OrderedCollection new.
 	respuestas:= OrderedCollection new.
-	seguidos := OrderedCollection new.
-	topicosSeguidos := OrderedCollection new.
+	seguidos := Set new.
+	topicosSeguidos := Set new.
 ]
 
 { #category : #accessing }
@@ -87,6 +87,31 @@ Usuario >> nombre [
 { #category : #accessing }
 Usuario >> nombre: anObject [
 	nombre := anObject
+]
+
+{ #category : #'as yet unclassified' }
+Usuario >> obtenerPreguntasRelevantes [
+	| aux |
+	aux := OrderedCollection new.
+	aux
+		addAll:
+			(seguidos
+				collect: [ :each | each preguntas asSet collect: [ :preg | preg ] ]).
+	aux
+		addAll:
+			(topicosSeguidos
+				collect: [ :each | each preguntas asSet collect: [ :preg | preg ] ]).
+	^ aux
+]
+
+{ #category : #'as yet unclassified' }
+Usuario >> obtenerPreguntasUsuario [
+	^preguntas
+]
+
+{ #category : #'as yet unclassified' }
+Usuario >> obtenerRespuestasUsuario [
+	^respuestas
 ]
 
 { #category : #accessing }

@@ -1,12 +1,8 @@
 Class {
 	#name : #Respuesta,
-	#superclass : #Object,
+	#superclass : #Post,
 	#instVars : [
-		'texto',
-		'fechayhora',
-		'pregunta',
-		'puntuacion',
-		'usuario'
+		'pregunta'
 	],
 	#category : #'CuOOra-Models'
 }
@@ -51,12 +47,19 @@ Respuesta >> registrarPuntuacion: unaPuntuacion [
 	puntuacion add: unaPuntuacion
 ]
 
-{ #category : #accessing }
-Respuesta >> texto [
-	^texto
-]
-
-{ #category : #accessing }
-Respuesta >> texto: unTexto [
-	texto := unTexto 
+{ #category : #'as yet unclassified' }
+Respuesta >> registrarPuntuacion: unUsuario valor: unValor [
+	| punt |
+	puntuacion
+		detect: [ :each | 
+			each usuario == unUsuario
+				ifTrue: [ each reset.
+					unValor > 0
+						ifTrue: [ each positivo ]
+						ifFalse: [ each negativo ] ] ]
+		ifNone: [ punt := Puntuacion usuario: unUsuario.
+			unValor > 0
+				ifTrue: punt positivo
+				ifFalse: punt negativo.
+			puntuacion add: punt ]
 ]
