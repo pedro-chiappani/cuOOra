@@ -49,17 +49,17 @@ Respuesta >> registrarPuntuacion: unaPuntuacion [
 
 { #category : #'as yet unclassified' }
 Respuesta >> registrarPuntuacion: unUsuario valor: unValor [
-	| punt |
-	puntuacion
-		detect: [ :each | 
-			each usuario == unUsuario
-				ifTrue: [ each reset.
-					unValor > 0
-						ifTrue: [ each positivo ]
-						ifFalse: [ each negativo ] ] ]
+	| punt aux |
+	aux := puntuacion
+		detect: [ :each | each usuario == unUsuario ]
 		ifNone: [ punt := Puntuacion usuario: unUsuario.
 			unValor > 0
-				ifTrue: punt positivo
-				ifFalse: punt negativo.
-			puntuacion add: punt ]
+				ifTrue: [ punt positivo ]
+				ifFalse: [ punt negativo ].
+			puntuacion add: punt ].
+	aux
+		ifNotNil: [ aux reset.
+			unValor > 0
+				ifTrue: [ aux positivo ]
+				ifFalse: [ aux negativo ] ]
 ]
