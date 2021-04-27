@@ -35,10 +35,11 @@ UsuarioTest >> testAgregarSeguidor [
 
 { #category : #tests }
 UsuarioTest >> testAgregarTopico [
-	|topic|.
+	|topic topic2|.
 	topic := Topico new.
 	usu agregarTopico: topic.
-	usu agregarTopico: topic.
+	topic2 := Topico new.
+	usu agregarTopico: topic2.
 	self assert: usu topicosSeguidos size equals: 2. 		
 	
 	
