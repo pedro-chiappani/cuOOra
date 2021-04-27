@@ -61,7 +61,8 @@ Usuario >> contra: anObject [
 
 { #category : #accessing }
 Usuario >> eliminarRespuestasPregunta: unaPregunta [
-	respuestas remove: [ :each | each pregunta = unaPregunta ]
+	respuestas removeAllSuchThat: [:each | each pregunta == unaPregunta ].
+
 ]
 
 { #category : #accessing }

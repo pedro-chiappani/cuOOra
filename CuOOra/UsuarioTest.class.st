@@ -48,6 +48,7 @@ UsuarioTest >> testAgregarTopico [
 UsuarioTest >> testRespuestas [
 	|resp preg|.
 	preg := Pregunta titulo: 'titTest' descripcion: 'descTest'  usuario: usu.
+	usu agregarPregunta: preg.
 	
 	resp:= Respuesta new.
 	resp pregunta: preg.

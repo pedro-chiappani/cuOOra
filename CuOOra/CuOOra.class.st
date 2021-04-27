@@ -11,11 +11,6 @@ Class {
 }
 
 { #category : #'as yet unclassified' }
-CuOOra >> calcularPuntajeUsuario: unUsuario [
-	unUsuario calcularPuntaje 
-]
-
-{ #category : #'as yet unclassified' }
 CuOOra >> crearPregunta: unTitulo topicos: unosTopicos decripcion: unaDescrip usuario: unUsuario [
 	|preg|
 	preg := Pregunta titulo: unTitulo descripcion: unaDescrip usuario: unUsuario.
@@ -49,7 +44,7 @@ CuOOra >> crearUsuario: unNombre pass: unaPass [
 
 { #category : #'as yet unclassified' }
 CuOOra >> eliminarPregunta: unaPregunta [
-	respuestas remove: [ :unaRes | unaRes pregunta = unaPregunta ].
+	respuestas removeAllSuchThat: [:each | each pregunta == unaPregunta ].
 	unaPregunta eliminarRespuestas.
 	usuarios
 		do: [ :usu | 
