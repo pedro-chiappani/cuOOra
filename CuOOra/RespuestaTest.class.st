@@ -15,6 +15,7 @@ RespuestaTest >> setUp [
 
 { #category : #tests }
 RespuestaTest >> testPuntuacionTotal [ 
+	"Si tiene un like y un dislike la publicacion tiene como puntuacion 0. testea tanto la puntuacion total como registrarPuntuacion"
 	|usu usu2|.
 	usu := Usuario new.
 	usu2 := Usuario new.

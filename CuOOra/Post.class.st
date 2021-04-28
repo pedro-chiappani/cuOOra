@@ -10,9 +10,20 @@ Class {
 	#category : #'CuOOra-Models'
 }
 
+{ #category : #initialization }
+Post >> initialize [ 
+	fechayhora := DateAndTime now.
+	puntuacion := OrderedCollection new.
+]
+
 { #category : #accessing }
 Post >> puntuacion [
 	^ puntuacion
+]
+
+{ #category : #accessing }
+Post >> puntuacionTotal [
+	^ self subclassResponsibility
 ]
 
 { #category : #'as yet unclassified' }
