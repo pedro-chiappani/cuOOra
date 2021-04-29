@@ -33,9 +33,8 @@ Pregunta >> eliminarRespuestas [
 Pregunta >> initialize [ 
 	super initialize.
 	topicos := OrderedCollection new.
-	fechayhora := DateAndTime now.
 	respuestas := OrderedCollection new.
-	puntuacion := OrderedCollection  new.
+	
 	
 ]
 

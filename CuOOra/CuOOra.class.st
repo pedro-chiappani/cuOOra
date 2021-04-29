@@ -7,9 +7,6 @@ Class {
 		'preguntas',
 		'respuestas'
 	],
-	#classInstVars : [
-		'soleInstance'
-	],
 	#category : #'CuOOra-Models'
 }
 
@@ -85,16 +82,6 @@ CuOOra >> preguntas [
 { #category : #accessing }
 CuOOra >> respuestas [
 	^ respuestas
-]
-
-{ #category : #'as yet unclassified' }
-CuOOra >> seguirTopico: unTopico usuario: unUsuario [
-	unUsuario agregarTopico: unTopico 
-]
-
-{ #category : #'as yet unclassified' }
-CuOOra >> seguirUsuario: unUsuario usuario: otroUsuario [
-	otroUsuario agregarSeguidor: unUsuario
 ]
 
 { #category : #accessing }
