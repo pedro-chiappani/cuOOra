@@ -11,18 +11,35 @@ Class {
 }
 
 { #category : #accessing }
+Posteo class >> text: aString [
+	^ self new
+		text: aString;
+		yourself
+]
+
+{ #category : #accessing }
+Posteo >> fechayhora [ 
+	^ fechayhora 
+]
+
+{ #category : #accessing }
 Posteo >> fechayhota [
 	^fechayhora 
 ]
 
 { #category : #initialization }
-Posteo >> initialize [ 
+Posteo >> initialize [
 	fechayhora := DateAndTime now.
 	puntuacion := OrderedCollection new.
 ]
 
 { #category : #accessing }
-Posteo >> puntuacionTotal [ 
+Posteo >> puntuacion [ 
+	^puntuacion
+]
+
+{ #category : #accessing }
+Posteo >> puntuacionTotal [
 	^self subclassResponsibility 
 ]
 
@@ -31,22 +48,27 @@ Posteo >> puntucacion [
 	^puntuacion
 ]
 
+{ #category : #abstract }
+Posteo >> registrarPuntuacion: unUsuario valor: unValor [
+	^self subclassResponsibility 
+]
+
 { #category : #accessing }
-Posteo >> texto [ 
+Posteo >> texto [
 	^texto
 ]
 
 { #category : #accessing }
-Posteo >> texto: unTexto [
-	texto:= unTexto 
+Posteo >> texto: anObject [
+	texto := anObject
 ]
 
 { #category : #accessing }
-Posteo >> usuario [ 
+Posteo >> usuario [
 	^usuario
 ]
 
 { #category : #accessing }
 Posteo >> usuario: unUsuario [
-	usuario:= unUsuario 
+	usuario:= unUsuario
 ]
