@@ -23,7 +23,7 @@ Puntuacion >> initialize [
 
 { #category : #'as yet unclassified' }
 Puntuacion >> negativo [
-	puntuacion := -1.
+	puntuacion :=  -1.
 ]
 
 { #category : #'as yet unclassified' }
