@@ -11,20 +11,8 @@ Class {
 }
 
 { #category : #accessing }
-Posteo class >> text: aString [
-	^ self new
-		text: aString;
-		yourself
-]
-
-{ #category : #accessing }
 Posteo >> fechayhora [ 
 	^ fechayhora 
-]
-
-{ #category : #accessing }
-Posteo >> fechayhota [
-	^fechayhora 
 ]
 
 { #category : #initialization }
@@ -41,11 +29,6 @@ Posteo >> puntuacion [
 { #category : #accessing }
 Posteo >> puntuacionTotal [
 	^self subclassResponsibility 
-]
-
-{ #category : #accessing }
-Posteo >> puntucacion [
-	^puntuacion
 ]
 
 { #category : #abstract }
