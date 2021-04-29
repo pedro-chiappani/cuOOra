@@ -7,8 +7,21 @@ Class {
 		'preguntas',
 		'respuestas'
 	],
+	#classInstVars : [
+		'soleInstance'
+	],
 	#category : #'CuOOra-Models'
 }
+
+{ #category : #'instance creation' }
+CuOOra class >> clearSoleInstance [
+	soleInstance := nil
+]
+
+{ #category : #'instance creation' }
+CuOOra class >> soleInstance [
+	^ soleInstance ifNil: [ soleInstance := self new ]
+]
 
 { #category : #'as yet unclassified' }
 CuOOra >> crearPregunta: unTitulo topicos: unosTopicos decripcion: unaDescrip usuario: unUsuario [
@@ -87,6 +100,13 @@ CuOOra >> seguirUsuario: unUsuario usuario: otroUsuario [
 { #category : #accessing }
 CuOOra >> topicos [
 	^ topicos
+]
+
+{ #category : #utility }
+CuOOra >> usuarioConEmail: anEmail protegidoPor: aPassword [
+	^ usuarios 
+		detect: [ :each | each email = anEmail & (each password = aPassword) ]
+		ifNone: [ nil ]
 ]
 
 { #category : #accessing }

@@ -46,6 +46,14 @@ UsuarioTest >> testAgregarTopico [
 ]
 
 { #category : #tests }
+UsuarioTest >> testIgualdad [
+	|usuario2|.
+	usuario2 := Usuario nombre: 'Pepe' contra: '123abc'.
+	self assert: (usu esIgual: usuario2) equals: false.
+	self assert: (usu esIgual: usu) equals: true.
+]
+
+{ #category : #tests }
 UsuarioTest >> testRespuestas [
 	|resp preg topicos aux|.
 	topicos := OrderedCollection new.

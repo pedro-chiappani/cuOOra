@@ -38,6 +38,12 @@ PreguntaTest >> testPuntuacionTotal [
 	preg registrarPuntuacion: usu valor: 1.
 	preg registrarPuntuacion: usu2 valor: 1.
 	self assert: preg puntuacionTotal equals: 2.
+	
 	preg registrarPuntuacion: usu valor:-1.
 	self assert: preg puntuacionTotal equals: 0.
+	
+	preg registrarPuntuacion: usu valor:1.
+	self assert: preg puntuacionTotal equals: 2.
+	
+	
 ]

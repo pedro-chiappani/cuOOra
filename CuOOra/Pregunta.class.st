@@ -1,6 +1,6 @@
 Class {
 	#name : #Pregunta,
-	#superclass : #Post,
+	#superclass : #AnObsoletePost,
 	#instVars : [
 		'titulo',
 		'topicos',
