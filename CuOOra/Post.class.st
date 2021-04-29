@@ -11,13 +11,6 @@ Class {
 }
 
 { #category : #accessing }
-Post class >> text: aString [
-	^ self new
-		text: aString;
-		yourself
-]
-
-{ #category : #accessing }
 Post >> fechayhora [ 
 	^ fechayhora 
 ]
