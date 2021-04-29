@@ -19,7 +19,13 @@ Post class >> text: aString [
 
 { #category : #initialization }
 Post >> initialize [
-	timeStamp := DateAndTime now
+	fechayhora := DateAndTime now.
+	puntuacion := OrderedCollection new.
+]
+
+{ #category : #accessing }
+Post >> puntuacion [ 
+	^puntuacion
 ]
 
 { #category : #accessing }
@@ -27,17 +33,27 @@ Post >> puntuacionTotal [
 	^ self subclassResponsibility
 ]
 
-{ #category : #accessing }
-Post >> text [
-	^ text
+{ #category : #'as yet unclassified' }
+Post >> registrarPuntuacion: unUsuario valor: unValor [
+	^self subclassResponsibility 
 ]
 
 { #category : #accessing }
-Post >> text: anObject [
-	text := anObject
+Post >> texto [
+	^texto
 ]
 
 { #category : #accessing }
-Post >> timeStamp [
-	^ timeStamp
+Post >> texto: anObject [
+	texto := anObject
+]
+
+{ #category : #accessing }
+Post >> usuario [
+	^usuario
+]
+
+{ #category : #accessing }
+Post >> usuario: unUsuario [
+	usuario:= unUsuario
 ]
