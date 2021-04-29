@@ -7,6 +7,9 @@ Class {
 		'preguntas',
 		'respuestas'
 	],
+	#classInstVars : [
+		'soleInstance'
+	],
 	#category : #'CuOOra-Models'
 }
 
@@ -90,9 +93,9 @@ CuOOra >> topicos [
 ]
 
 { #category : #utility }
-CuOOra >> usuarioConEmail: anEmail protegidoPor: aPassword [
+CuOOra >> usuarioConNombre: anNombre protegidoPor: aPassword [
 	^ usuarios 
-		detect: [ :each | each email = anEmail & (each password = aPassword) ]
+		detect: [ :each | each nombre  = anNombre & (each contra = aPassword) ]
 		ifNone: [ nil ]
 ]
 

@@ -1,17 +1,14 @@
 Class {
 	#name : #RegistroComponent,
 	#superclass : #AccesoComponent,
-	#instVars : [
-		'nombre'
-	],
 	#category : #'CuOOra-UI'
 }
 
 { #category : #rendering }
 RegistroComponent >> registerAndLogin [
 	|unUsuario|.
-	unUsuario= Usuario new.
-	"agregar usuario al cuoora - self model addUser: unUsuario."
+	unUsuario := Usuario nombre: nombre contra: contraseña .
+	self model crearUsuario: nombre pass: contraseña .
 	self procederCon: unUsuario
 ]
 

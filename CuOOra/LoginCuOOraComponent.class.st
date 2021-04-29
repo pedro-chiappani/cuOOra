@@ -6,15 +6,15 @@ Class {
 
 { #category : #callback }
 LoginCuOOraComponent >> login [ 
-	(self model usuarioConEmail: email protegidoPor: contraseña)
+	(self model usuarioConNombre: nombre protegidoPor: contraseña)
 		ifNotNil: [ :it | self procederCon: it ].
-	email := nil.
+	nombre := nil.
 	contraseña := nil
 ]
 
 { #category : #callback }
 LoginCuOOraComponent >> registrarUsuarioNuevo [
-	self call: RegisterComponent new
+	self call: RegistroComponent new
 ]
 
 { #category : #rendering }

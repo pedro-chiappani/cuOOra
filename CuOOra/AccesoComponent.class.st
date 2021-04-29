@@ -2,7 +2,7 @@ Class {
 	#name : #AccesoComponent,
 	#superclass : #WAComponent,
 	#instVars : [
-		'email',
+		'nombre',
 		'contraseña'
 	],
 	#category : #'CuOOra-UI'
@@ -18,19 +18,19 @@ AccesoComponent >> contraseña: anContraseña [
 	contraseña:=anContraseña 
 ]
 
-{ #category : #accesing }
-AccesoComponent >> email [
-	^ email
-]
-
-{ #category : #accesing }
-AccesoComponent >> email: anObject [
-	email := anObject
-]
-
 { #category : #model }
 AccesoComponent >> model [
-	^ SimpleNet soleInstance
+	^ CuOOra soleInstance
+]
+
+{ #category : #accesing }
+AccesoComponent >> nombre [
+	^ nombre
+]
+
+{ #category : #accesing }
+AccesoComponent >> nombre: anObject [
+	nombre := anObject
 ]
 
 { #category : #private }
@@ -55,7 +55,7 @@ AccesoComponent >> renderContentOn: aCanvas [
 { #category : #rendering }
 AccesoComponent >> renderInputElementsOn: aCanvas [
 	aCanvas label: 'Usuario'.
-	aCanvas paragraph: [ aCanvas textInput on: #email of: self ].
+	aCanvas paragraph: [ aCanvas textInput on: #nombre of: self ].
 	aCanvas label: 'Contraseña'.
 	aCanvas paragraph: [ aCanvas passwordInput on: #contraseña of: self ]
 ]
