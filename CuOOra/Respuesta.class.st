@@ -33,18 +33,8 @@ Respuesta >> pregunta: unaPregunta [
 ]
 
 { #category : #accessing }
-Respuesta >> puntuacion [ 	
-	^puntuacion
-]
-
-{ #category : #accessing }
 Respuesta >> puntuacionTotal [
 	^puntuacion sum: [ :each | each puntuacion ]
-]
-
-{ #category : #accessing }
-Respuesta >> registrarPuntuacion: unaPuntuacion [
-	puntuacion add: unaPuntuacion
 ]
 
 { #category : #accessing }

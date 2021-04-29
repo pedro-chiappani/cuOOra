@@ -35,7 +35,7 @@ AccesoComponent >> nombre: anObject [
 
 { #category : #private }
 AccesoComponent >> procederCon: aUser [
-	self session .
+	self session usuario: aUser.
 	self call: PrincipalComponent new
 ]
 
