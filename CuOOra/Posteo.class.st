@@ -15,6 +15,11 @@ Posteo >> fechayhora [
 	^ fechayhora 
 ]
 
+{ #category : #accessing }
+Posteo >> fechayhota [
+	^fechayhora 
+]
+
 { #category : #initialization }
 Posteo >> initialize [
 	fechayhora := DateAndTime now.
@@ -29,6 +34,11 @@ Posteo >> puntuacion [
 { #category : #accessing }
 Posteo >> puntuacionTotal [
 	^self subclassResponsibility 
+]
+
+{ #category : #accessing }
+Posteo >> puntucacion [
+	^puntuacion
 ]
 
 { #category : #abstract }
