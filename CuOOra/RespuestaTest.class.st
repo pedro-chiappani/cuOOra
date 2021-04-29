@@ -17,15 +17,9 @@ RespuestaTest >> setUp [
 RespuestaTest >> testPuntuacionTotal [ 
 	"Si tiene un like y un dislike la publicacion tiene como puntuacion 0. testea tanto la puntuacion total como registrarPuntuacion"
 	|usu usu2|.
-	usu := Usuario nombre: 'Juan' contra: '213'.
-	usu2 := Usuario nombre: 'Mariano' contra: '123'.
+	usu := Usuario new.
+	usu2 := Usuario new.
 	resp registrarPuntuacion: usu valor: 1.
 	resp registrarPuntuacion: usu2 valor: 1.
-	self assert: resp puntuacionTotal equals: 2.
-	resp registrarPuntuacion: usu valor:-1.
-	self assert: resp puntuacionTotal equals: 0.
-	
-	resp registrarPuntuacion: usu valor: 1.
-	resp registrarPuntuacion: usu valor: 1.
 	self assert: resp puntuacionTotal equals: 2.
 ]

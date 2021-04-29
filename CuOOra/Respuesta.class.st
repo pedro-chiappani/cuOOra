@@ -1,6 +1,6 @@
 Class {
 	#name : #Respuesta,
-	#superclass : #AnObsoletePost,
+	#superclass : #Post,
 	#instVars : [
 		'pregunta'
 	],
@@ -18,7 +18,8 @@ Respuesta class >> texto: unTexto pregunta: unaPregunta [
 { #category : #initialization }
 Respuesta >> initialize [
 	super initialize.
-	
+	fechayhora:= DateAndTime now.
+	puntuacion := OrderedCollection  new.
 ]
 
 { #category : #accessing }

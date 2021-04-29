@@ -1,6 +1,6 @@
 Class {
 	#name : #Pregunta,
-	#superclass : #AnObsoletePost,
+	#superclass : #Post,
 	#instVars : [
 		'titulo',
 		'topicos',
@@ -33,8 +33,9 @@ Pregunta >> eliminarRespuestas [
 Pregunta >> initialize [ 
 	super initialize.
 	topicos := OrderedCollection new.
+	fechayhora := DateAndTime now.
 	respuestas := OrderedCollection new.
-	
+	puntuacion := OrderedCollection  new.
 	
 ]
 

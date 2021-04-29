@@ -18,9 +18,8 @@ Post class >> text: aString [
 ]
 
 { #category : #initialization }
-Post >> initialize [ 
-	fechayhora := DateAndTime now.
-	puntuacion := OrderedCollection new.
+Post >> initialize [
+	timeStamp := DateAndTime now
 ]
 
 { #category : #accessing }
