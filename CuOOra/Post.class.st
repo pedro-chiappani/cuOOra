@@ -33,6 +33,11 @@ Post >> puntuacion [
 	^puntuacion
 ]
 
+{ #category : #accessing }
+Post >> puntuacionTotal [
+	^self subclassResponsibility 
+]
+
 { #category : #'as yet unclassified' }
 Post >> registrarPuntuacion: unUsuario valor: unValor [
 	^self subclassResponsibility 
