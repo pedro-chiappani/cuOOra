@@ -20,7 +20,7 @@ CuOOra class >> soleInstance [
 	^ soleInstance ifNil: [ soleInstance := self new ]
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #accessing }
 CuOOra >> crearPregunta: unTitulo topicos: unosTopicos decripcion: unaDescrip usuario: unUsuario [
 	|preg|
 	preg := Pregunta titulo: unTitulo descripcion: unaDescrip usuario: unUsuario topicos: unosTopicos.
@@ -29,7 +29,7 @@ CuOOra >> crearPregunta: unTitulo topicos: unosTopicos decripcion: unaDescrip us
 	unosTopicos do: [ :each | each preguntas: preg ]
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #accessing }
 CuOOra >> crearRespuesta: unaPregunta texto: unTexto usuario: unUsuario [
 	|res|
 	res := Respuesta texto: unTexto pregunta: unaPregunta .
@@ -38,21 +38,21 @@ CuOOra >> crearRespuesta: unaPregunta texto: unTexto usuario: unUsuario [
 	unUsuario agregarRespuesta: res
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #accessing }
 CuOOra >> crearTopico: unTitulo descrip: unaDescrip [
 	|top|
 	top := Topico titulo: unTitulo descripcion: unaDescrip.
 	topicos add: top.
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #accessing }
 CuOOra >> crearUsuario: unNombre pass: unaPass [
 	|usu|
 	usu := Usuario nombre: unNombre contra: unaPass.
 	usuarios add: usu. 
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #accessing }
 CuOOra >> eliminarPregunta: unaPregunta [
 	respuestas removeAllSuchThat: [:each | each pregunta == unaPregunta ].
 	unaPregunta eliminarRespuestas.

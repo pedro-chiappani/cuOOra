@@ -21,12 +21,12 @@ Puntuacion >> initialize [
 	puntuacion:= 0.
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #accessing }
 Puntuacion >> negativo [
-	puntuacion :=  -1.
+	puntuacion := -1.
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #accessing }
 Puntuacion >> positivo [
 	puntuacion:= 1.
 ]

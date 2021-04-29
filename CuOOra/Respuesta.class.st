@@ -42,12 +42,12 @@ Respuesta >> puntuacionTotal [
 	^puntuacion sum: [ :each | each puntuacion ]
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #accessing }
 Respuesta >> registrarPuntuacion: unaPuntuacion [
 	puntuacion add: unaPuntuacion
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #accessing }
 Respuesta >> registrarPuntuacion: unUsuario valor: unValor [
 	| punt aux |
 	aux := puntuacion

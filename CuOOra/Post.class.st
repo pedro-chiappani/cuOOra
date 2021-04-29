@@ -17,27 +17,22 @@ Post class >> text: aString [
 		yourself
 ]
 
+{ #category : #accessing }
+Post >> fechayhora [ 
+	^ fechayhora 
+]
+
 { #category : #initialization }
 Post >> initialize [
-	timeStamp := DateAndTime now
+	fechayhora  := DateAndTime now
 ]
 
 { #category : #accessing }
-Post >> puntuacionTotal [
-	^ self subclassResponsibility
+Post >> texto [ 
+	^ texto
 ]
 
 { #category : #accessing }
-Post >> text [
-	^ text
-]
-
-{ #category : #accessing }
-Post >> text: anObject [
-	text := anObject
-]
-
-{ #category : #accessing }
-Post >> timeStamp [
-	^ timeStamp
+Post >> texto: anObject [
+	texto := anObject
 ]

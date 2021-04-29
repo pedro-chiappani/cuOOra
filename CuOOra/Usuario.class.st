@@ -41,7 +41,7 @@ Usuario >> agregarTopico: unTopico [
 	topicosSeguidos add: unTopico.
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #accessing }
 Usuario >> calcularPuntaje [
 	|puntaje|
 	puntaje := preguntas sum: [ :each | 20 + each puntuacionTotal ].
@@ -95,7 +95,7 @@ Usuario >> nombre: anObject [
 	nombre := anObject
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #accessing }
 Usuario >> obtenerPreguntasRelevantes [
 	| aux |
 	aux := OrderedCollection new.
@@ -110,12 +110,12 @@ Usuario >> obtenerPreguntasRelevantes [
 	^ aux
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #accessing }
 Usuario >> obtenerPreguntasUsuario [
 	^preguntas
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #accessing }
 Usuario >> obtenerRespuestasUsuario [
 	^respuestas
 ]

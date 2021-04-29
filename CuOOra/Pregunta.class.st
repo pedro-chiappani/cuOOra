@@ -19,12 +19,12 @@ Pregunta class >> titulo: unTitulo descripcion: unaDescrip usuario: unUsuario to
 		yourself
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #accessing }
 Pregunta >> agregarTopicos: unosTopicos [
 	topicos addAll: unosTopicos
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #accessing }
 Pregunta >> eliminarRespuestas [
 	respuestas removeAll.
 ]
@@ -39,17 +39,17 @@ Pregunta >> initialize [
 	
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #accessing }
 Pregunta >> obtenerRespuestasPregunta [
 	^respuestas asSortedCollection: [ :unaRes :otraRes | unaRes puntuacionTotal > otraRes puntuacionTotal ]
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #accessing }
 Pregunta >> puntuacionTotal [
 	^puntuacion sum: [ :each | each puntuacion ]
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #accessing }
 Pregunta >> registrarPuntuacion: unUsuario valor: unValor [
 	| punt aux |
 	aux := puntuacion
