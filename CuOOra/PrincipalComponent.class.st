@@ -6,5 +6,8 @@ Class {
 
 { #category : #rendering }
 PrincipalComponent >> renderContentOn: aCanvas [
-	aCanvas heading: 'Welcome '.	
+	aCanvas heading: 'CuOOra'. "self session user nombre"
+	
+	aCanvas horizontalRule.
+
 ]

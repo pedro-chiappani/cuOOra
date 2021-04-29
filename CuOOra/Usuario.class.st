@@ -66,12 +66,6 @@ Usuario >> eliminarRespuestasPregunta: unaPregunta [
 ]
 
 { #category : #accessing }
-Usuario >> esIgual: anUser [
-	^self == anUser
-		
-]
-
-{ #category : #accessing }
 Usuario >> fechayhora [
 	^ fechayhora
 ]

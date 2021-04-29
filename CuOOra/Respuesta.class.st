@@ -1,6 +1,6 @@
 Class {
 	#name : #Respuesta,
-	#superclass : #Post,
+	#superclass : #Posteo,
 	#instVars : [
 		'pregunta'
 	],
