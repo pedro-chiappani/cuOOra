@@ -24,15 +24,36 @@ Post >> fechayhora [
 
 { #category : #initialization }
 Post >> initialize [
-	fechayhora  := DateAndTime now
+	fechayhora := DateAndTime now.
+	puntuacion := OrderedCollection new.
 ]
 
 { #category : #accessing }
-Post >> texto [ 
-	^ texto
+Post >> puntuacion [ 
+	^puntuacion
+]
+
+{ #category : #'as yet unclassified' }
+Post >> registrarPuntuacion: unUsuario valor: unValor [
+	^self subclassResponsibility 
+]
+
+{ #category : #accessing }
+Post >> texto [
+	^texto
 ]
 
 { #category : #accessing }
 Post >> texto: anObject [
 	texto := anObject
+]
+
+{ #category : #accessing }
+Post >> usuario [
+	^usuario
+]
+
+{ #category : #accessing }
+Post >> usuario: unUsuario [
+	usuario:= unUsuario
 ]
