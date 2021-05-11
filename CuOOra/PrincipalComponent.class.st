@@ -2,7 +2,8 @@ Class {
 	#name : #PrincipalComponent,
 	#superclass : #WAComponent,
 	#instVars : [
-		'sistema'
+		'sistema',
+		'mensaje'
 	],
 	#category : #'CuOOra-UI'
 }
@@ -15,16 +16,17 @@ PrincipalComponent >> desloguear [
 { #category : #initialization }
 PrincipalComponent >> initialize [
 	sistema := CuOOra soleInstance.
+	mensaje:= ''
 ]
 
 { #category : #rendering }
 PrincipalComponent >> obtenerUltimasCincoPreguntas [
-	^ self ordenarPreguntasRelevantes takeFirst: 5
+	^ self ordenarPreguntasRelevantes takeFirst: 5	 "ifNil: [ ^ nil ]"
 ]
 
 { #category : #'as yet unclassified' }
 PrincipalComponent >> ordenarPreguntasRelevantes [
-	^ (sistema obtenerPreguntasRelevantesDeUsuario: self session usuario )
+	^ (sistema obtenerPreguntasRelevantesDeUsuario: self session usuario)
 		asSortedCollection: [ :preg1 :preg2 | preg1 fechayhora > preg2 fechayhora ]
 ]
 
@@ -40,7 +42,7 @@ PrincipalComponent >> renderContentOn: aCanvas [
 
 { #category : #rendering }
 PrincipalComponent >> renderListaDePreguntas: listado on: aCanvas [
-	listado do: [ :each | self renderPregunta: each on: aCanvas ].
+	listado do: [ :each | self renderPregunta: each on: aCanvas ] 
 ]
 
 { #category : #rendering }
@@ -83,8 +85,12 @@ PrincipalComponent >> renderPreguntasOn: aCanvas [
 	aCanvas anchor
 		callback: [ "self call: CrearPreguntaCuOOraComponent new" ];
 		with: [ aCanvas button with: 'Hacer nueva pregunta' ].
-	self renderListaDePreguntas: self obtenerUltimasCincoPreguntas
-		on: aCanvas
+	aCanvas heading
+		level: 4;
+		with: mensaje.
+	(self
+		renderListaDePreguntas: self obtenerUltimasCincoPreguntas
+		on: aCanvas) "ifNil: [ mensaje := 'No hay preguntas cargadas' ]"
 ]
 
 { #category : #rendering }
