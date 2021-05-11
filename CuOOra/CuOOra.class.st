@@ -77,6 +77,11 @@ CuOOra >> initialize [
 	respuestas:= OrderedCollection new.
 ]
 
+{ #category : #'as yet unclassified' }
+CuOOra >> obtenerPreguntasRelevantesDeUsuario:unUsuario [
+^unUsuario obtenerPreguntasRelevantes 
+]
+
 { #category : #accessing }
 CuOOra >> preguntas [
 	^ preguntas

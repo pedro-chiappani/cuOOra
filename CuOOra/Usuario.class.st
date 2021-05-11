@@ -91,17 +91,8 @@ Usuario >> nombre: anObject [
 
 { #category : #accessing }
 Usuario >> obtenerPreguntasRelevantes [
-	| aux |
-	aux := OrderedCollection new.
-	aux
-		addAll:
-			(seguidos
-				collect: [ :each | each preguntas asSet collect: [ :preg | preg ] ]).
-	aux
-		addAll:
-			(topicosSeguidos
-				collect: [ :each | each preguntas asSet collect: [ :preg | preg ] ]).
-	^ aux
+	^ self preguntasDeTopicosDeInteres union: (self preguntasDeSeguidores)
+
 ]
 
 { #category : #accessing }
@@ -117,6 +108,16 @@ Usuario >> obtenerRespuestasUsuario [
 { #category : #accessing }
 Usuario >> preguntas [
 	^preguntas
+]
+
+{ #category : #'as yet unclassified' }
+Usuario >> preguntasDeSeguidores [
+^ seguidos flatCollect: [ :each | each preguntas ]
+]
+
+{ #category : #'as yet unclassified' }
+Usuario >> preguntasDeTopicosDeInteres [
+^ topicosSeguidos flatCollect: [ :each | each preguntas ]
 ]
 
 { #category : #accessing }
