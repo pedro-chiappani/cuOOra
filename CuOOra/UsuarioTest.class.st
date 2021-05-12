@@ -30,7 +30,7 @@ UsuarioTest >> testAgregarSeguidor [
 	usu agregarSeguidor: seg.
 	seg:= Usuario nombre: 'Feli' contra: '321'. 
 	usu agregarSeguidor: seg.
-	self assert: usu seguidos size equals: 2. 		
+	self assert: (usu sigoA: seg). 		
 ]
 
 { #category : #tests }
@@ -56,6 +56,26 @@ UsuarioTest >> testCalcularPuntaje [
 	res registrarPuntuacion: (Usuario new) valor: true.
 	usu agregarRespuesta: res.
 	self assert: usu calcularPuntaje equals: 73.
+]
+
+{ #category : #tests }
+UsuarioTest >> testObtenerPreguntasRelevantes [
+	|tops usu2 preg preg1 top top2 tops2 preg2|
+	tops:= OrderedCollection new.
+	tops2 := OrderedCollection new.
+	tops add: (top := Topico titulo: 'este topico' descripcion: 'topico A'). tops add: (top2 := Topico titulo: 'otro titulo' descripcion: 'topico B' ).
+	preg := Pregunta titulo: 'esta pregunta' descripcion: 'es una pregunta importante' usuario: (usu2 := Usuario nombre: 'Mario' contra: '123') topicos: tops.
+	tops remove: top.
+	usu2 agregarPregunta: preg.
+	preg1 := Pregunta titulo: 'otra pregunta' descripcion: 'esta no es tan importante' usuario: (Usuario nombre: 'Juan' contra: '321' ) topicos: tops.
+	tops2 add: top2.
+	preg2 := Pregunta titulo: 'ultimapregunta' descripcion: 'esta no es taaaan importante' usuario: (Usuario nombre: 'Juan' contra: '321' ) topicos: tops2.
+	top preguntas: preg. top2 preguntas: preg. top preguntas: preg1. top2 preguntas: preg2.
+	usu agregarSeguidor: usu2.
+	usu agregarTopico: top.
+	self assert: (usu obtenerPreguntasRelevantes includes: preg).
+	self assert: (usu obtenerPreguntasRelevantes includes: preg1).
+	self deny: (usu obtenerPreguntasRelevantes includes: preg2).
 ]
 
 { #category : #tests }
