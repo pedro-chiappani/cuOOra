@@ -24,7 +24,7 @@ PreguntaTest >> testEliminarResp [
 	|resp |.
 	resp:= Respuesta new.
 	preg respuestas: resp.
-	self assert: preg respuestas size equals: 1.
+	self assert: (preg respuestas includes: resp) equals: true.
 	preg eliminarRespuestas.
 	self assert: preg respuestas size equals: 0.	 
 ]
@@ -35,14 +35,14 @@ PreguntaTest >> testPuntuacionTotal [
 	|usu usu2|.
 	usu := Usuario nombre: 'Juan' contra: '213'.
 	usu2 := Usuario nombre: 'Mariano' contra: '123'.
-	preg registrarPuntuacion: usu valor: 1.
-	preg registrarPuntuacion: usu2 valor: 1.
+	preg registrarPuntuacion: usu valor: true.
+	preg registrarPuntuacion: usu2 valor: true.
 	self assert: preg puntuacionTotal equals: 2.
 	
-	preg registrarPuntuacion: usu valor:-1.
+	preg registrarPuntuacion: usu valor: false.
 	self assert: preg puntuacionTotal equals: 0.
 	
-	preg registrarPuntuacion: usu valor:1.
+	preg registrarPuntuacion: usu valor: true.
 	self assert: preg puntuacionTotal equals: 2.
 	
 	

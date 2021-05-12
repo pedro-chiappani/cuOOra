@@ -29,7 +29,8 @@ CuOOra >> crearPregunta: unTitulo topicos: unosTopicos decripcion: unaDescrip us
 	preg := Pregunta titulo: unTitulo descripcion: unaDescrip usuario: unUsuario topicos: unosTopicos.
 	preguntas add: preg.
 	unUsuario agregarPregunta: preg.
-	unosTopicos do: [ :each | each preguntas: preg ]
+	unosTopicos do: [ :each | each preguntas: preg ].
+	^preg.
 ]
 
 { #category : #accessing }
@@ -38,7 +39,8 @@ CuOOra >> crearRespuesta: unaPregunta texto: unTexto usuario: unUsuario [
 	res := Respuesta texto: unTexto pregunta: unaPregunta .
 	respuestas add: res.
 	unaPregunta respuestas: res.
-	unUsuario agregarRespuesta: res
+	unUsuario agregarRespuesta: res.
+	^res.
 ]
 
 { #category : #accessing }
@@ -46,27 +48,25 @@ CuOOra >> crearTopico: unTitulo descrip: unaDescrip [
 	|top|
 	top := Topico titulo: unTitulo descripcion: unaDescrip.
 	topicos add: top.
+	^top.
 ]
 
 { #category : #accessing }
 CuOOra >> crearUsuario: unNombre pass: unaPass [
 	|usu|
 	usu := Usuario nombre: unNombre contra: unaPass.
-	usuarios add: usu. 
+	usuarios add: usu.
+	^usu.
 ]
 
 { #category : #accessing }
 CuOOra >> eliminarPregunta: unaPregunta [
-	respuestas removeAllSuchThat: [:each | each pregunta == unaPregunta ].
+	respuestas removeAllSuchThat: [:each | each pregunta = unaPregunta ].
 	unaPregunta eliminarRespuestas.
-	usuarios
-		do: [ :usu | 
-			usu preguntas
-				do: [ :preg | 
-					preg = unaPregunta
-						ifTrue: [ preg eliminarRespuestas.
-							preg remove ].
-					usu eliminarRespuestasPregunta: unaPregunta ] ]
+	unaPregunta usuario eliminarPregunta: unaPregunta.
+	unaPregunta topicos do: [ :top | top eliminarPregunta: unaPregunta ].
+	preguntas remove: unaPregunta.
+
 ]
 
 { #category : #initialization }

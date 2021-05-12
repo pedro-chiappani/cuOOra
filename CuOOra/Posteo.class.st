@@ -10,6 +10,11 @@ Class {
 	#category : #'CuOOra-Models'
 }
 
+{ #category : #'as yet unclassified' }
+Posteo >> eliminarPuntuacionDe: unUsuario [
+	puntuacion removeAllSuchThat: [ :each | each usuario = unUsuario ]
+]
+
 { #category : #accessing }
 Posteo >> fechayhora [ 
 	^ fechayhora 
@@ -28,12 +33,13 @@ Posteo >> puntuacion [
 
 { #category : #accessing }
 Posteo >> puntuacionTotal [
-	^self subclassResponsibility 
+	^puntuacion sum: [ :each | each puntuacion ifTrue: 1 ifFalse: -1]
 ]
 
 { #category : #abstract }
 Posteo >> registrarPuntuacion: unUsuario valor: unValor [
-	^self subclassResponsibility 
+	self eliminarPuntuacionDe: unUsuario.
+	puntuacion add: (Puntuacion usuario: unUsuario valor: unValor)
 ]
 
 { #category : #accessing }

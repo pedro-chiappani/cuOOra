@@ -9,26 +9,17 @@ Class {
 }
 
 { #category : #creation }
-Puntuacion class >> usuario: unUsuario [
+Puntuacion class >> usuario: unUsuario valor: unValor [
 	^self new 
 		usuario: unUsuario;
+		puntuacion: unValor;
 		yourself
 ]
 
 { #category : #initialization }
 Puntuacion >> initialize [
 	super initialize.
-	puntuacion:= 0.
-]
-
-{ #category : #accessing }
-Puntuacion >> negativo [
-	puntuacion := -1.
-]
-
-{ #category : #accessing }
-Puntuacion >> positivo [
-	puntuacion:= 1.
+	puntuacion:= true.
 ]
 
 { #category : #accessing }
@@ -37,8 +28,8 @@ Puntuacion >> puntuacion [
 ]
 
 { #category : #accessing }
-Puntuacion >> reset [ 
-	puntuacion := 0
+Puntuacion >> puntuacion: unValor [
+	puntuacion:= unValor 
 ]
 
 { #category : #accessing }

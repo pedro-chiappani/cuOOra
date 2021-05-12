@@ -22,12 +22,22 @@ TopicoTest >> setUp [
 ]
 
 { #category : #tests }
+TopicoTest >> testEliminarPregunta [ 
+	|preg |.
+	preg:= Pregunta new.
+	topic preguntas: preg.
+	self assert: (topic preguntas includes: preg) equals: true.
+	topic eliminarPregunta: preg.
+	self assert: topic preguntas size equals: 0.	
+]
+
+{ #category : #tests }
 TopicoTest >> testPreguntas [
 	|preg|.
 	preg:= Pregunta new.
 	topic preguntas: preg.
 	topic preguntas: preg.
 	
-	self assert: topic preguntas size equals: 2.
+	self assert: (topic preguntas includes: preg) equals: true.
 	
 ]

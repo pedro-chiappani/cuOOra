@@ -45,7 +45,7 @@ Usuario >> agregarTopico: unTopico [
 Usuario >> calcularPuntaje [
 	|puntaje|
 	puntaje := preguntas sum: [ :each | 20 + each puntuacionTotal ].
-	puntaje := puntaje + (respuestas select: [:each | each usuario ~= self]) sum: [ :each | 50 + each puntuacionTotal ].
+	puntaje := puntaje + ((respuestas select: [:each | each usuario ~= self]) sum: [ :each | 50 + each puntuacionTotal ]).
 	^puntaje
 ]
 
@@ -60,9 +60,15 @@ Usuario >> contra: anObject [
 ]
 
 { #category : #accessing }
+Usuario >> eliminarPregunta: unaPregunta [
+	self eliminarRespuestasPregunta: unaPregunta.
+	preguntas remove: unaPregunta
+]
+
+{ #category : #accessing }
 Usuario >> eliminarRespuestasPregunta: unaPregunta [
 	respuestas
-		removeAllSuchThat: [ :each | each pregunta == unaPregunta ]
+		removeAllSuchThat: [ :each | each pregunta = unaPregunta ]
 ]
 
 { #category : #accessing }
@@ -127,6 +133,11 @@ Usuario >> respuestas [
 { #category : #accessing }
 Usuario >> seguidos [
 	^seguidos
+]
+
+{ #category : #'as yet unclassified' }
+Usuario >> tenesPregunta: unaPregunta [
+	^preguntas includes: unaPregunta.
 ]
 
 { #category : #accessing }

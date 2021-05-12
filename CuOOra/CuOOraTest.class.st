@@ -2,55 +2,71 @@ Class {
 	#name : #CuOOraTest,
 	#superclass : #TestCase,
 	#instVars : [
-		'cuo'
+		'cuo',
+		'usu',
+		'usu2',
+		'tops',
+		'top1',
+		'top2',
+		'preg',
+		'res'
 	],
 	#category : #'CuOOra-Tests'
 }
 
 { #category : #running }
 CuOOraTest >> setUp [
+	super setUp.
 	cuo := CuOOra new.
+	usu := cuo crearUsuario: 'Juan' pass: 'hila123'.
+	usu2 := cuo crearUsuario: 'Manuel' pass: 'hila123'.
+	top1 := cuo crearTopico: 'Algoritmos' descrip: 'Este topico es para preguntas relacionadas con algoritmos de cualquier tipo'.
+	top2 := cuo crearTopico: 'Python' descrip: 'Este topico es para preguntas relacionadas con Python'.
+	tops := OrderedCollection new.
+	tops add: top1. tops add: top2.
+	preg := cuo crearPregunta: 'Como es la sentencia For en Python?' topicos: tops decripcion: 'Estoy empezando a programar con python y quiero saber como es el for' usuario: usu.
+	res := cuo crearRespuesta: preg texto: 'el for se hace bla bla bla' usuario: usu2.
 ]
 
 { #category : #tests }
 CuOOraTest >> testCrearPregunta [
-	|usu tops top1 top2|
-	usu := Usuario nombre: 'Manuel' contra: 'goa123'.
-	top1 := Topico titulo: 'Algoritmos' descripcion: 'Este topico es para preguntas relacionadas con algoritmos de cualquier tipo'.
-	top2:= Topico titulo: 'Python' descripcion: 'Este topico es para preguntas relacionadas con Python'.
-	tops := OrderedCollection new.
-	tops add: top1.
-	tops add: top2.
-	cuo crearPregunta: 'Como es la sentencia For en Python?' topicos: tops decripcion: 'Estoy empezando a programar con python y quiero saber como es el for' usuario: usu.
-	self assert: (top1 preguntas detect: [:each | each usuario == usu]) usuario equals: usu.
-	self assert: (top2 preguntas detect: [:each | each usuario == usu]) usuario equals: usu.
+	self assert: (top1 tenesPregunta: preg).
+	self assert: (top2 tenesPregunta: preg).
 ]
 
 { #category : #tests }
 CuOOraTest >> testCrearRespuesta [
-	|usu usu2 tops top1 top2 preg|
-	usu := Usuario nombre: 'Manuel' contra: 'goa123'.
-	usu2 := Usuario nombre: 'jaja' contra: 'mamama'.
-	top1 := Topico titulo: 'Algoritmos' descripcion: 'Este topico es para preguntas relacionadas con algoritmos de cualquier tipo'.
-	top2:= Topico titulo: 'Python' descripcion: 'Este topico es para preguntas relacionadas con Python'.
-	tops := OrderedCollection new.
-	tops add: top1.
-	tops add: top2.
-	cuo crearPregunta: 'Como es la sentencia For en Python?' topicos: tops decripcion: 'Estoy empezando a programar con python y quiero saber como es el for' usuario: usu.
-	preg := cuo preguntas	first.
-	cuo crearRespuesta: preg texto: 'el for se hace bla bla bla' usuario: usu2.
-	self assert: (cuo respuestas detect: [:each | each pregunta == preg]) pregunta equals: preg
+	self assert: (preg tenesRespuesta: res)
 	
 ]
 
 { #category : #tests }
 CuOOraTest >> testCrearTopico [
-	cuo crearTopico: 'Algoritmos' descrip: 'Aca se pueden hacer consultas relacionadas con los algoritmos'.
-	self assert: (cuo topicos detect: [:each | each nombre == 'Algoritmos']) nombre equals: 'Algoritmos'
+	self deny: cuo topicos isEmpty
 ]
 
 { #category : #tests }
 CuOOraTest >> testCrearUsuario [
-	cuo crearUsuario: 'Juan' pass: 'hila123'.
-	self assert: (cuo usuarios detect: [:each | each nombre == 'Juan']) nombre equals: 'Juan'
+	self assert: (cuo usuarios size) equals: 2.
+	cuo crearUsuario: 'Mariano' pass: '1234'.
+	self assert: (cuo usuarios size) equals: 3. 
+]
+
+{ #category : #tests }
+CuOOraTest >> testEliminarPregunta [
+	|preg1 preg2 |
+	preg1 := cuo crearPregunta: 'Como es la sentencia While en Python?' topicos: tops decripcion: 'Estoy empezando a programar con python y quiero saber como es el while' usuario: usu.
+	preg2 := cuo crearPregunta: 'Como es la sentencia Case en Python?' topicos: tops decripcion: 'Estoy empezando a programar con python y quiero saber como es el case' usuario: usu.
+	self assert: (cuo preguntas includes: preg).
+	self assert: (cuo preguntas includes: preg1).
+	self assert: (cuo preguntas includes: preg2).
+	self assert: cuo respuestas size equals: 1.
+	self assert: (res tuPreguntaEs: preg).
+	self assert: (usu tenesPregunta: preg).
+	self assert: (top1 tenesPregunta: preg).
+	cuo eliminarPregunta: preg.
+	self assert: cuo respuestas size equals: 0.
+	self deny: (cuo preguntas includes: preg) equals: true.
+	self deny: (usu tenesPregunta: preg).
+	self deny: (top1 tenesPregunta: preg).
 ]

@@ -19,13 +19,14 @@ RespuestaTest >> testPuntuacionTotal [
 	|usu usu2|.
 	usu := Usuario nombre: 'Juan' contra: '213'.
 	usu2 := Usuario nombre: 'Mariano' contra: '123'.
-	resp registrarPuntuacion: usu valor: 1.
-	resp registrarPuntuacion: usu2 valor: 1.
+	resp registrarPuntuacion: usu valor: true.
+	resp registrarPuntuacion: usu valor: true.
+	resp registrarPuntuacion: usu2 valor: true.
 	self assert: resp puntuacionTotal equals: 2.
 	
-	resp registrarPuntuacion: usu valor:-1.
+	resp registrarPuntuacion: usu valor: false.
 	self assert: resp puntuacionTotal equals: 0.
 	
-	resp registrarPuntuacion: usu valor:1.
+	resp registrarPuntuacion: usu valor: true.
 	self assert: resp puntuacionTotal equals: 2.
 ]

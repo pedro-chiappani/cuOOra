@@ -46,6 +46,19 @@ UsuarioTest >> testAgregarTopico [
 ]
 
 { #category : #tests }
+UsuarioTest >> testCalcularPuntaje [
+	|preg res|
+	preg := Pregunta new.
+	res := Respuesta new.
+	preg registrarPuntuacion: (Usuario new) valor: true.
+	preg registrarPuntuacion: (Usuario new) valor: true.
+	usu agregarPregunta: preg.
+	res registrarPuntuacion: (Usuario new) valor: true.
+	usu agregarRespuesta: res.
+	self assert: usu calcularPuntaje equals: 73.
+]
+
+{ #category : #tests }
 UsuarioTest >> testRespuestas [
 	|resp preg topicos aux|.
 	topicos := OrderedCollection new.

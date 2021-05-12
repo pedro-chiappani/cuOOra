@@ -32,24 +32,7 @@ Respuesta >> pregunta: unaPregunta [
 	pregunta:= unaPregunta
 ]
 
-{ #category : #accessing }
-Respuesta >> puntuacionTotal [
-	^puntuacion sum: [ :each | each puntuacion ]
-]
-
-{ #category : #accessing }
-Respuesta >> registrarPuntuacion: unUsuario valor: unValor [
-	| punt aux |
-	aux := puntuacion
-		detect: [ :each | each usuario == unUsuario ]
-		ifNone: [ punt := Puntuacion usuario: unUsuario.
-			unValor > 0
-				ifTrue: [ punt positivo ]
-				ifFalse: [ punt negativo ].
-			puntuacion add: punt ].
-	aux
-		ifNotNil: [ aux reset.
-			unValor > 0
-				ifTrue: [ aux positivo ]
-				ifFalse: [ aux negativo ] ]
+{ #category : #'as yet unclassified' }
+Respuesta >> tuPreguntaEs: unaPregunta [
+	^pregunta = unaPregunta.
 ]

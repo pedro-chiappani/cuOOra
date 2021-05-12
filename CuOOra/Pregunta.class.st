@@ -45,28 +45,6 @@ Pregunta >> obtenerRespuestasPregunta [
 ]
 
 { #category : #accessing }
-Pregunta >> puntuacionTotal [
-	^puntuacion sum: [ :each | each puntuacion ]
-]
-
-{ #category : #accessing }
-Pregunta >> registrarPuntuacion: unUsuario valor: unValor [
-	| punt aux |
-	aux := puntuacion
-		detect: [ :each | each usuario == unUsuario ]
-		ifNone: [ punt := Puntuacion usuario: unUsuario.
-			unValor > 0
-				ifTrue: [ punt positivo ]
-				ifFalse: [ punt negativo ].
-			puntuacion add: punt ].
-	aux
-		ifNotNil: [ aux reset.
-			unValor > 0
-				ifTrue: [ aux positivo ]
-				ifFalse: [ aux negativo ] ]
-]
-
-{ #category : #accessing }
 Pregunta >> respuestas [ 
 	^ respuestas
 ]
@@ -74,6 +52,11 @@ Pregunta >> respuestas [
 { #category : #accessing }
 Pregunta >> respuestas: unaRespuesta [
 	respuestas add: unaRespuesta
+]
+
+{ #category : #'as yet unclassified' }
+Pregunta >> tenesRespuesta: unaRespuesta [
+	^respuestas includes: unaRespuesta
 ]
 
 { #category : #accessing }
@@ -84,4 +67,9 @@ Pregunta >> titulo [
 { #category : #accessing }
 Pregunta >> titulo: anObject [
 	titulo := anObject
+]
+
+{ #category : #accessing }
+Pregunta >> topicos [ 
+	^topicos
 ]

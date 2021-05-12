@@ -27,6 +27,11 @@ Topico >> descripcion: anObject [
 	descripcion := anObject
 ]
 
+{ #category : #accessing }
+Topico >> eliminarPregunta: unaPregunta [
+	preguntas remove: unaPregunta
+]
+
 { #category : #initialization }
 Topico >> initialize [ 
 	super initialize.
@@ -51,4 +56,9 @@ Topico >> preguntas [
 { #category : #accessing }
 Topico >> preguntas: unaPregunta [
 	preguntas add: unaPregunta
+]
+
+{ #category : #'as yet unclassified' }
+Topico >> tenesPregunta: unaPregunta [
+	^preguntas includes: unaPregunta
 ]
