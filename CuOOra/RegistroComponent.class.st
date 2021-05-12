@@ -6,10 +6,10 @@ Class {
 
 { #category : #rendering }
 RegistroComponent >> registerAndLogin [
-	|unUsuario|.
-	unUsuario := Usuario nombre: nombre contra: contraseña .
-	self model crearUsuario: nombre pass: contraseña .
-	self procederCon: unUsuario
+	| unUsuario |
+	unUsuario := Usuario nombre: nombre contra: contraseña.
+	self model crearUsuario: nombre pass: contraseña.
+	self answer 
 ]
 
 { #category : #rendering }
@@ -21,5 +21,9 @@ RegistroComponent >> renderButtonsOn: aCanvas [
 RegistroComponent >> renderSignUpButtonOn: aCanvas [
 	aCanvas submitButton
 		callback: [ self registerAndLogin ];
-		with: 'Registrar'
+		with: 'Registrar'.
+		aCanvas submitButton
+		callback: [ self answer ];
+		with: 'Cancelar'
+		
 ]
