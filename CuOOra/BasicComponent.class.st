@@ -30,5 +30,11 @@ BasicComponent >> renderContentOn: aCanvas [
 			aCanvas space.
 			aCanvas anchor
 				callback: [ self parent call: LoginCuOOraComponent new ];
-				with: 'Cerrar Sesion' ]
+				with: 'Cerrar Sesion'.
+			aCanvas break.
+			aCanvas space.
+			aCanvas anchor
+				callback: [ self parent call: PrincipalComponent new ];
+				with: [aCanvas button: 'Home'].
+			aCanvas horizontalRule ]
 ]
