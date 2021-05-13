@@ -116,12 +116,12 @@ Usuario >> preguntas [
 	^preguntas
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #private }
 Usuario >> preguntasDeSeguidores [
 ^ seguidos flatCollect: [ :each | each preguntas ]
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #private }
 Usuario >> preguntasDeTopicosDeInteres [
 ^ topicosSeguidos flatCollect: [ :each | each preguntas ]
 ]
@@ -134,6 +134,11 @@ Usuario >> respuestas [
 { #category : #accessing }
 Usuario >> seguidos [
 	^seguidos
+]
+
+{ #category : #private }
+Usuario >> sigoA: unUsuario [
+	^seguidos includes: unUsuario
 ]
 
 { #category : #'as yet unclassified' }
