@@ -8,6 +8,14 @@ Class {
 	#category : #'CuOOra-UI'
 }
 
+{ #category : #utility }
+PrincipalComponent >> contadorPuntuacion: unaPublicacion on: aCanvas [
+	aCanvas
+		text:
+			'' , unaPublicacion puntuacionTotal  printString , ' Puntuacion '.
+	aCanvas break
+]
+
 { #category : #callback }
 PrincipalComponent >> desloguear [
 	self answer .
@@ -18,6 +26,16 @@ PrincipalComponent >> initialize [
 	super initialize .
 	sistema := CuOOra soleInstance.
 	mensaje:= ''
+]
+
+{ #category : #utility }
+PrincipalComponent >> likeDislikeButtons: unaPublicacion on: aCanvas [
+	aCanvas anchor
+		callback: [ unaPublicacion registrarPuntuacion: self session usuario valor: 1 ];
+		with: [ aCanvas button with: 'Like' ].
+	aCanvas anchor
+		callback: [ unaPublicacion registrarPuntuacion: self session usuario valor: -1 ];
+		with: [ aCanvas button with: 'Dislike' ]
 ]
 
 { #category : #rendering }
@@ -57,8 +75,8 @@ PrincipalComponent >> renderListaDeTopicos: topicos on: aCanvas [
 { #category : #rendering }
 PrincipalComponent >> renderPregunta: unaPregunta on: aCanvas [
 	aCanvas anchor
-		callback:
-				[ self call: (VerPreguntaComponent crearPreguntaComponent: unaPregunta) ];
+		callback: [ self
+				call: (VerPreguntaComponent crearPreguntaComponent: unaPregunta) ];
 		with: [ aCanvas heading
 				level: 2;
 				with: unaPregunta titulo ].
@@ -66,15 +84,14 @@ PrincipalComponent >> renderPregunta: unaPregunta on: aCanvas [
 	self renderListaDeTopicos: unaPregunta topicos on: aCanvas.
 	aCanvas
 		paragraph: [ aCanvas text: 'Realizada por '.
-			aCanvas strong: unaPregunta usuario nombre printString.
 			aCanvas anchor
 				callback:
-						[ "self call: (UsuarioCuOOraComponent crearUsuarioComponent: unaPregunta usuario sistema: CuOOra soleInstance  )" ];
+						[ self call: (VerUsuarioComponent crearUsuarioComponent: unaPregunta usuario soleInstance  ) ];
 				with: [ aCanvas button with: unaPregunta usuario nombre ].
 			aCanvas
 				text: ' | ' , unaPregunta respuestas size printString , ' respuesta/s' ].
-	"self contadorLikesDislikes: unaPregunta on: aCanvas.
-	self likeDislikeButtons: unaPregunta on: aCanvas."
+	self contadorPuntuacion: unaPregunta on: aCanvas.
+	self likeDislikeButtons: unaPregunta on: aCanvas.
 	aCanvas horizontalRule
 ]
 
