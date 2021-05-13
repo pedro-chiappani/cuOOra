@@ -15,6 +15,7 @@ PrincipalComponent >> desloguear [
 
 { #category : #initialization }
 PrincipalComponent >> initialize [
+	super initialize.
 	sistema := CuOOra soleInstance.
 	mensaje:= ''
 ]
