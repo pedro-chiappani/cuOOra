@@ -15,35 +15,32 @@ PrincipalComponent >> desloguear [
 
 { #category : #initialization }
 PrincipalComponent >> initialize [
-	super initialize.
+	super initialize .
 	sistema := CuOOra soleInstance.
 	mensaje:= ''
 ]
 
 { #category : #rendering }
 PrincipalComponent >> obtenerUltimasCincoPreguntas [
-	^ self ordenarPreguntasRelevantes takeFirst: 5	 "ifNil: [ ^ nil ]"
+	^ self ordenarPreguntasRelevantes takeFirst: 5	 
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #rendering }
 PrincipalComponent >> ordenarPreguntasRelevantes [
-	^ (sistema obtenerPreguntasRelevantesDeUsuario: self session usuario)
+	^ (self session usuario obtenerPreguntasRelevantes )
 		asSortedCollection: [ :preg1 :preg2 | preg1 fechayhora > preg2 fechayhora ]
 ]
 
 { #category : #rendering }
-PrincipalComponent >> renderContentOn: aCanvas [														
-	self renderTopPageOn: aCanvas.	"setea parte principal de la pagina"													
-	aCanvas horizontalRule.
-	
-	self renderPreguntasOn: aCanvas.
-	
-
+PrincipalComponent >> renderContentOn: aCanvas [
+	self renderTopPageOn: aCanvas.	"setea parte principal de la pagina"
+	self renderPreguntasOn: aCanvas
 ]
 
 { #category : #rendering }
 PrincipalComponent >> renderListaDePreguntas: listado on: aCanvas [
-	listado do: [ :each | self renderPregunta: each on: aCanvas ] 
+	listado do: [ :each | self renderPregunta: each on: aCanvas ]
+	
 ]
 
 { #category : #rendering }
@@ -59,23 +56,26 @@ PrincipalComponent >> renderListaDeTopicos: topicos on: aCanvas [
 
 { #category : #rendering }
 PrincipalComponent >> renderPregunta: unaPregunta on: aCanvas [
-aCanvas anchor
-				callback: ["self call: (PreguntaCuOOraComponent crearPreguntaComponent: unaPregunta  sistema: CuOOra soleInstance)"];
-				with: [aCanvas heading level: 2 ; with: unaPregunta titulo.].
+	aCanvas anchor
+		callback:
+				[ self call: (VerPreguntaComponent crearPreguntaComponent: unaPregunta) ];
+		with: [ aCanvas heading
+				level: 2;
+				with: unaPregunta titulo ].
 	aCanvas paragraph: unaPregunta descripcion.
-	self renderListaDeTopicos: unaPregunta topicos on:aCanvas.  
-	aCanvas paragraph: [
-		aCanvas text: 'Realizada por '.
-		aCanvas strong: unaPregunta usuario nombre printString.
-		aCanvas anchor
-           callback: ["self call: (UsuarioCuOOraComponent crearUsuarioComponent: unaPregunta usuario sistema: CuOOra soleInstance  )"];
-           with: [ aCanvas button with: unaPregunta usuario nombre].
-		aCanvas text: ' | ',unaPregunta respuestas size printString,' respuesta/s'. 
-	].
+	self renderListaDeTopicos: unaPregunta topicos on: aCanvas.
+	aCanvas
+		paragraph: [ aCanvas text: 'Realizada por '.
+			aCanvas strong: unaPregunta usuario nombre printString.
+			aCanvas anchor
+				callback:
+						[ "self call: (UsuarioCuOOraComponent crearUsuarioComponent: unaPregunta usuario sistema: CuOOra soleInstance  )" ];
+				with: [ aCanvas button with: unaPregunta usuario nombre ].
+			aCanvas
+				text: ' | ' , unaPregunta respuestas size printString , ' respuesta/s' ].
 	"self contadorLikesDislikes: unaPregunta on: aCanvas.
 	self likeDislikeButtons: unaPregunta on: aCanvas."
-	aCanvas horizontalRule.
-	
+	aCanvas horizontalRule
 ]
 
 { #category : #rendering }
@@ -84,7 +84,7 @@ PrincipalComponent >> renderPreguntasOn: aCanvas [
 		level: 3;
 		with: 'Preguntas Relevantes'.
 	aCanvas anchor
-		callback: [ "self call: CrearPreguntaCuOOraComponent new" ];
+		callback: [ self call: CrearPreguntaCuOOraComponent new ];
 		with: [ aCanvas button with: 'Hacer nueva pregunta' ].
 	aCanvas heading
 		level: 4;
@@ -96,5 +96,5 @@ PrincipalComponent >> renderPreguntasOn: aCanvas [
 
 { #category : #rendering }
 PrincipalComponent >> renderTopPageOn: aCanvas [
-aCanvas paragraph: (BasicComponent newWithParent: self)
+	aCanvas paragraph: (BasicComponent newWithParent: self)
 ]
