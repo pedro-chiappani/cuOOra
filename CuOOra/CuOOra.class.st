@@ -35,12 +35,12 @@ CuOOra >> crearPregunta: unTitulo topicos: unosTopicos decripcion: unaDescrip us
 
 { #category : #accessing }
 CuOOra >> crearRespuesta: unaPregunta texto: unTexto usuario: unUsuario [
-	|res|
-	res := Respuesta texto: unTexto pregunta: unaPregunta .
+	| res |
+	res := Respuesta texto: unTexto pregunta: unaPregunta usuario: unUsuario.
 	respuestas add: res.
 	unaPregunta respuestas: res.
 	unUsuario agregarRespuesta: res.
-	^res.
+	^ res
 ]
 
 { #category : #accessing }

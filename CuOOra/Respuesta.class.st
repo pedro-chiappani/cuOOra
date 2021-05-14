@@ -8,10 +8,11 @@ Class {
 }
 
 { #category : #creation }
-Respuesta class >> texto: unTexto pregunta: unaPregunta [
-	^self new 
+Respuesta class >> texto: unTexto pregunta: unaPregunta usuario: unUsuario [
+	^ self new
 		texto: unTexto;
-		pregunta: unaPregunta
+		pregunta: unaPregunta;
+		usuario: unUsuario;
 		yourself
 ]
 

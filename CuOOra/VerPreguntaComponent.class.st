@@ -50,8 +50,18 @@ VerPreguntaComponent >> pregunta:unaPregunta [
 { #category : #initialization }
 VerPreguntaComponent >> renderContentOn: aCanvas [
 	self renderTopPageOn: aCanvas.
-	self renderPregunta: pregunta on: aCanvas
-	"self renderListaDeRespuestasOn: aCanvas."
+	self renderPregunta: pregunta on: aCanvas.
+	self renderListaDeRespuestasOn: aCanvas.
+]
+
+{ #category : #rendering }
+VerPreguntaComponent >> renderListaDeRespuestasOn: aCanvas [
+	pregunta obtenerRespuestasPregunta
+		do: [ :each | self renderRespuesta: each on: aCanvas ].
+	pregunta usuario = self session usuario
+		ifFalse: [ aCanvas anchor
+				callback: [ self call: (RespuestaCuOOraComponent crearRespuesta: pregunta) ];
+				with: [ aCanvas button with: 'AGREGAR RESPUESTA' ] ]
 ]
 
 { #category : #rendering }
@@ -82,6 +92,20 @@ VerPreguntaComponent >> renderPregunta: unaPregunta on: aCanvas [
 				text: ' | ' , unaPregunta respuestas size printString , ' respuesta/s' ].
 	self contadorPuntuacion: unaPregunta on: aCanvas.
 	self likeDislikeButtons: unaPregunta on: aCanvas.
+	aCanvas horizontalRule
+]
+
+{ #category : #rendering }
+VerPreguntaComponent >> renderRespuesta: unaRespuesta on: aCanvas [
+	aCanvas
+		paragraph: [ aCanvas strong: 'Respuesta de '.
+			aCanvas anchor
+				callback: [ self
+						call: (VerUsuarioComponent crearUsuarioComponent: unaRespuesta usuario) ];
+				with: [ aCanvas button with: unaRespuesta usuario nombre ] ].
+	aCanvas paragraph: unaRespuesta texto.
+	self contadorPuntuacion: unaRespuesta on: aCanvas.
+	self likeDislikeButtons: unaRespuesta on: aCanvas.
 	aCanvas horizontalRule
 ]
 
