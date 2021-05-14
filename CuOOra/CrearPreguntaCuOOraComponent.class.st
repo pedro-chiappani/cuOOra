@@ -31,8 +31,8 @@ CrearPreguntaCuOOraComponent >> publicarPregunta [
 	sistema
 		crearPregunta: titulo
 		topicos: self topicosIngresados
-		decripcion: descripcion
-		usuario: self session usuario 
+		descripcion: descripcion
+		usuario: self session usuario
 ]
 
 { #category : #rendering }
@@ -62,7 +62,8 @@ CrearPreguntaCuOOraComponent >> renderContentOn: aCanvas [
 			aCanvas break.
 			aCanvas break.
 			aCanvas submitButton
-				callback: [ self publicarPregunta. self answer ];
+				callback: [ self publicarPregunta.
+					self answer ];
 				value: ' Publicar '.
 			aCanvas submitButton
 				callback: [ self answer ];

@@ -18,19 +18,69 @@ CuOOra class >> clearSoleInstance [
 	soleInstance := nil
 ]
 
+{ #category : #example }
+CuOOra class >> example [
+	| sistema pedro diego topico1 topico2 topico3 preguntapedro preguntadiego topicospedro juan topicosdiego |
+	sistema := self new.
+	pedro := sistema
+		crearUsuario: 'pedro@cuoora.com'
+		pass: 'pedro@cuoora.com'.
+	diego := sistema
+		crearUsuario: 'diego@cuoora.com'
+		pass: 'diego@cuoora.com'.
+	juan := sistema
+		crearUsuario: 'juan@cuoora.com'
+		pass: 'juan@cuoora.com'.
+	topico1 := sistema crearTopico: 'OO1' descrip: ''.
+	topico2 := sistema crearTopico: 'Test de unidad' descrip: ''.
+	topico3 := sistema crearTopico: 'Smalltalk' descrip: ''.
+	topicospedro := OrderedCollection new.
+	topicosdiego := OrderedCollection new.
+	topicospedro add: topico1.
+	topicospedro add: topico2.
+	topicosdiego add: topico1.
+	topicosdiego add: topico3.
+	preguntapedro := sistema
+		crearPregunta: '¿Para que sirve el metodo SetUp?'
+		topicos: topicospedro
+		descripcion: ''
+		usuario: pedro.
+	preguntadiego := sistema
+		crearPregunta: '¿Que significa #messageNotUnderstood?'
+		topicos: topicosdiego
+		descripcion: ''
+		usuario: diego.
+	sistema crearRespuesta: preguntapedro texto: 'Sirve para instanciar los objetos que son evaluados por el test en un √∫nico m√©todo y que se ejecute siempre antes de cada test.' usuario: diego.
+	sistema crearRespuesta: preguntadiego  texto: 'Significa que el objeto que recibi el mensaje no encontro nungun metodo para ejecutar en respuesta' usuario: pedro.
+	diego agregarTopico: topico3.
+	pedro agregarTopico: topico1.
+	juan agregarSeguidor: diego.
+	pedro agregarSeguidor: juan.
+	^ sistema
+]
+
+{ #category : #initialization }
+CuOOra class >> initializeSampleInstance [
+	soleInstance := self example.
+]
+
 { #category : #'instance creation' }
 CuOOra class >> soleInstance [
 	^ soleInstance ifNil: [ soleInstance := self new ]
 ]
 
 { #category : #accessing }
-CuOOra >> crearPregunta: unTitulo topicos: unosTopicos decripcion: unaDescrip usuario: unUsuario [
-	|preg|
-	preg := Pregunta titulo: unTitulo descripcion: unaDescrip usuario: unUsuario topicos: unosTopicos.
+CuOOra >> crearPregunta: unTitulo topicos: unosTopicos descripcion: unaDescrip usuario: unUsuario [
+	| preg |
+	preg := Pregunta
+		titulo: unTitulo
+		descripcion: unaDescrip
+		usuario: unUsuario
+		topicos: unosTopicos.
 	preguntas add: preg.
 	unUsuario agregarPregunta: preg.
 	unosTopicos do: [ :each | each preguntas: preg ].
-	^preg.
+	^ preg
 ]
 
 { #category : #accessing }

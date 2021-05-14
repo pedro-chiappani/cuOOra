@@ -20,12 +20,25 @@ CuOOraTest >> setUp [
 	cuo := CuOOra new.
 	usu := cuo crearUsuario: 'Juan' pass: 'hila123'.
 	usu2 := cuo crearUsuario: 'Manuel' pass: 'hila123'.
-	top1 := cuo crearTopico: 'Algoritmos' descrip: 'Este topico es para preguntas relacionadas con algoritmos de cualquier tipo'.
-	top2 := cuo crearTopico: 'Python' descrip: 'Este topico es para preguntas relacionadas con Python'.
+	top1 := cuo
+		crearTopico: 'Algoritmos'
+		descrip:
+			'Este topico es para preguntas relacionadas con algoritmos de cualquier tipo'.
+	top2 := cuo
+		crearTopico: 'Python'
+		descrip: 'Este topico es para preguntas relacionadas con Python'.
 	tops := OrderedCollection new.
-	tops add: top1. tops add: top2.
-	preg := cuo crearPregunta: 'Como es la sentencia For en Python?' topicos: tops decripcion: 'Estoy empezando a programar con python y quiero saber como es el for' usuario: usu.
-	res := cuo crearRespuesta: preg texto: 'el for se hace bla bla bla' usuario: usu2.
+	tops add: top1.
+	tops add: top2.
+	preg := cuo
+		crearPregunta: 'Como es la sentencia For en Python?'
+		topicos: tops
+		descripcion: 'Estoy empezando a programar con python y quiero saber como es el for'
+		usuario: usu.
+	res := cuo
+		crearRespuesta: preg
+		texto: 'el for se hace bla bla bla'
+		usuario: usu2
 ]
 
 { #category : #tests }
@@ -54,9 +67,19 @@ CuOOraTest >> testCrearUsuario [
 
 { #category : #tests }
 CuOOraTest >> testEliminarPregunta [
-	|preg1 preg2 |
-	preg1 := cuo crearPregunta: 'Como es la sentencia While en Python?' topicos: tops decripcion: 'Estoy empezando a programar con python y quiero saber como es el while' usuario: usu.
-	preg2 := cuo crearPregunta: 'Como es la sentencia Case en Python?' topicos: tops decripcion: 'Estoy empezando a programar con python y quiero saber como es el case' usuario: usu.
+	| preg1 preg2 |
+	preg1 := cuo
+		crearPregunta: 'Como es la sentencia While en Python?'
+		topicos: tops
+		descripcion:
+			'Estoy empezando a programar con python y quiero saber como es el while'
+		usuario: usu.
+	preg2 := cuo
+		crearPregunta: 'Como es la sentencia Case en Python?'
+		topicos: tops
+		descripcion:
+			'Estoy empezando a programar con python y quiero saber como es el case'
+		usuario: usu.
 	self assert: (cuo preguntas includes: preg).
 	self assert: (cuo preguntas includes: preg1).
 	self assert: (cuo preguntas includes: preg2).
@@ -68,5 +91,5 @@ CuOOraTest >> testEliminarPregunta [
 	self assert: cuo respuestas size equals: 0.
 	self deny: (cuo preguntas includes: preg) equals: true.
 	self deny: (usu tenesPregunta: preg).
-	self deny: (top1 tenesPregunta: preg).
+	self deny: (top1 tenesPregunta: preg)
 ]

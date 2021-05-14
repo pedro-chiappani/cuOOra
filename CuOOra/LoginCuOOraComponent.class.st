@@ -1,3 +1,11 @@
+"
+""|app|
+app := WAAdmin register: LoginCuOOraComponent asApplicationAt: 'cuoora'.
+app sessionClass: SessionConUsuario .
+CuOOra clearSoleInstance.
+CuOOra initializeSampleInstance.
+""
+"
 Class {
 	#name : #LoginCuOOraComponent,
 	#superclass : #AccesoComponent,
