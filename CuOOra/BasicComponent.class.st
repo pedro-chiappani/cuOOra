@@ -32,9 +32,13 @@ BasicComponent >> renderContentOn: aCanvas [
 							aCanvas space: 5.
 							aCanvas anchor
 								callback: [ self parent call: PrincipalComponent new ];
-								with: [ aCanvas button: 'Home' ] ].
+								with: [ aCanvas button: 'Home' ].
+							aCanvas space.
+							aCanvas anchor
+								callback: [ self parent call: BuscadorDeTopicosComponent new ];
+								with: [ aCanvas button: 'Buscar Topicos' ] ].
 					aCanvas
-						tableData: [ aCanvas space: 190.
+						tableData: [ aCanvas space: 150.
 							aCanvas text: 'Bienvenido ' , self session usuario nombre ].
 					aCanvas
 						tableData: [ aCanvas text: '|'.

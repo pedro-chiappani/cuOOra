@@ -33,7 +33,11 @@ Posteo >> puntuacion [
 
 { #category : #accessing }
 Posteo >> puntuacionTotal [
-	^puntuacion sum: [ :each | each puntuacion ifTrue: 1 ifFalse: -1]
+	| tot |
+	tot := 0.
+	puntuacion
+		ifNotEmpty: [ tot := puntuacion sum: [ :each | each puntuacion ifTrue: 1 ifFalse: -1] ].
+	^ tot
 ]
 
 { #category : #abstract }

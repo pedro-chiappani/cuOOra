@@ -97,6 +97,11 @@ CuOOra >> topicos [
 	^ topicos
 ]
 
+{ #category : #'as yet unclassified' }
+CuOOra >> topicosConNombre: aString [
+	^topicos select: [ :each | each nombre asLowercase includesSubstring: aString asLowercase ]
+]
+
 { #category : #utility }
 CuOOra >> usuarioConNombre: anNombre protegidoPor: aPassword [
 	^ usuarios 

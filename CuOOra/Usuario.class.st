@@ -59,6 +59,16 @@ Usuario >> contra: anObject [
 	contra := anObject
 ]
 
+{ #category : #'as yet unclassified' }
+Usuario >> dejarSeguirTopico: unTopico [
+	topicosSeguidos remove: unTopico
+]
+
+{ #category : #'as yet unclassified' }
+Usuario >> dejarSeguirUsuario: unUsuario [
+	seguidos remove: unUsuario
+]
+
 { #category : #accessing }
 Usuario >> eliminarPregunta: unaPregunta [
 	self eliminarRespuestasPregunta: unaPregunta.

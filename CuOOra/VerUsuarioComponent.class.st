@@ -69,7 +69,7 @@ VerUsuarioComponent >> renderPregunta: unaPregunta on: aCanvas [
 		with: [ aCanvas heading
 				level: 2;
 				with: unaPregunta titulo ].
-	aCanvas paragraph: unaPregunta descripcion.
+	aCanvas paragraph: unaPregunta texto.
 	self renderListaDeTopicos: unaPregunta topicos on: aCanvas.
 	aCanvas
 		paragraph: [ aCanvas text: 'Realizada por '.
@@ -82,6 +82,18 @@ VerUsuarioComponent >> renderPregunta: unaPregunta on: aCanvas [
 ]
 
 { #category : #rendering }
+VerUsuarioComponent >> renderSeguirDejarDeSeguirButton: aCanvas [
+	aCanvas
+		tableData: [ (self session usuario seguidos anySatisfy: [ :each | each = usuario ])
+				ifTrue: [ aCanvas anchor
+						callback: [ self session usuario dejarSeguirUsuario: usuario ];
+						with: 'Dejar de Seguir ' ]
+				ifFalse: [ aCanvas anchor
+						callback: [ self session usuario agregarSeguidor: usuario ];
+						with: 'Seguir ' ] ]
+]
+
+{ #category : #rendering }
 VerUsuarioComponent >> renderTitulo: aCanvas [
 	aCanvas
 		table: [ aCanvas
@@ -89,8 +101,9 @@ VerUsuarioComponent >> renderTitulo: aCanvas [
 						tableData: [ aCanvas heading
 								level: 1;
 								with: 'Preguntas de ' , usuario nombre ].
-					usuario = self session usuario 
-						ifFalse: [ "self renderSeguirDejarDeSeguirButton: aCanvas" ] ] ]
+					usuario = self session usuario
+						ifFalse: [ 
+							self renderSeguirDejarDeSeguirButton: aCanvas ] ] ]
 ]
 
 { #category : #rendering }

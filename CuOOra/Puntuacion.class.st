@@ -19,7 +19,6 @@ Puntuacion class >> usuario: unUsuario valor: unValor [
 { #category : #initialization }
 Puntuacion >> initialize [
 	super initialize.
-	puntuacion:= true.
 ]
 
 { #category : #accessing }

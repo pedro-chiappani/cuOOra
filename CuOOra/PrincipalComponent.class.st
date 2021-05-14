@@ -31,10 +31,10 @@ PrincipalComponent >> initialize [
 { #category : #utility }
 PrincipalComponent >> likeDislikeButtons: unaPublicacion on: aCanvas [
 	aCanvas anchor
-		callback: [ unaPublicacion registrarPuntuacion: self session usuario valor: 1 ];
+		callback: [ unaPublicacion registrarPuntuacion: self session usuario valor: true ];
 		with: [ aCanvas button with: 'Like' ].
 	aCanvas anchor
-		callback: [ unaPublicacion registrarPuntuacion: self session usuario valor: -1 ];
+		callback: [ unaPublicacion registrarPuntuacion: self session usuario valor: false ];
 		with: [ aCanvas button with: 'Dislike' ]
 ]
 
@@ -80,13 +80,13 @@ PrincipalComponent >> renderPregunta: unaPregunta on: aCanvas [
 		with: [ aCanvas heading
 				level: 2;
 				with: unaPregunta titulo ].
-	aCanvas paragraph: unaPregunta descripcion.
+	aCanvas paragraph: unaPregunta texto.
 	self renderListaDeTopicos: unaPregunta topicos on: aCanvas.
 	aCanvas
 		paragraph: [ aCanvas text: 'Realizada por '.
 			aCanvas anchor
 				callback:
-						[ self call: (VerUsuarioComponent crearUsuarioComponent: unaPregunta usuario soleInstance  ) ];
+						[ self call: (VerUsuarioComponent crearUsuarioComponent: unaPregunta usuario ) ];
 				with: [ aCanvas button with: unaPregunta usuario nombre ].
 			aCanvas
 				text: ' | ' , unaPregunta respuestas size printString , ' respuesta/s' ].
