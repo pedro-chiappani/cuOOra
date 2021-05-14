@@ -50,8 +50,16 @@ CuOOra class >> example [
 		topicos: topicosdiego
 		descripcion: ''
 		usuario: diego.
-	sistema crearRespuesta: preguntapedro texto: 'Sirve para instanciar los objetos que son evaluados por el test en un √∫nico m√©todo y que se ejecute siempre antes de cada test.' usuario: diego.
-	sistema crearRespuesta: preguntadiego  texto: 'Significa que el objeto que recibi el mensaje no encontro nungun metodo para ejecutar en respuesta' usuario: pedro.
+	sistema
+		crearRespuesta: preguntapedro
+		texto:
+			'Sirve para instanciar los objetos que son evaluados por el test en un unico metodo y que se ejecute siempre antes de cada test.'
+		usuario: diego.
+	sistema
+		crearRespuesta: preguntadiego
+		texto:
+			'Significa que el objeto que recibi el mensaje no encontro nungun metodo para ejecutar en respuesta'
+		usuario: pedro.
 	diego agregarTopico: topico3.
 	pedro agregarTopico: topico1.
 	juan agregarSeguidor: diego.

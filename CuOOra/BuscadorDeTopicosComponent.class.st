@@ -38,12 +38,10 @@ BuscadorDeTopicosComponent >> renderSearchFormOn: aCanvas [
 
 { #category : #rendering }
 BuscadorDeTopicosComponent >> renderSearchResultsOn: aCanvas [
-	| topicos  |
-	searchText ifEmpty: [ ^ self ].
+	| topicos |
 	topicos := sistema topicosConNombre: searchText.
 	topicos
-		ifEmpty: [ aCanvas
-				paragraph: 'No hay ningun topico con ese nombre' ]
+		ifEmpty: [ aCanvas paragraph: 'No hay ningun topico con ese nombre' ]
 		ifNotEmpty: [ self renderTopicos: topicos on: aCanvas ]
 ]
 
